@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/txtQuestion"
         android:layout_width="338dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="64dp"
@@ -43,42 +43,42 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <RadioButton
-        android:id="@+id/radioButton6"
+        android:id="@+id/rdBtn1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="132dp"
         android:layout_marginTop="32dp"
         android:text="Black Panther"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/txtQuestion" />
 
     <RadioButton
-        android:id="@+id/radioButton7"
+        android:id="@+id/rdBtn2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="132dp"
         android:layout_marginTop="8dp"
         android:text="Wolverine"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioButton6" />
+        app:layout_constraintTop_toBottomOf="@+id/rdBtn1" />
 
     <RadioButton
-        android:id="@+id/radioButton8"
+        android:id="@+id/rdBtn3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="132dp"
         android:layout_marginTop="8dp"
         android:text="Doctor Strange"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioButton7" />
+        app:layout_constraintTop_toBottomOf="@+id/rdBtn2" />
 
     <RadioButton
-        android:id="@+id/radioButton9"
+        android:id="@+id/rdBtn4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="132dp"
         android:layout_marginTop="8dp"
         android:text="Scarlet Witch"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioButton8" />
+        app:layout_constraintTop_toBottomOf="@+id/rdBtn3" />
 </android.support.constraint.ConstraintLayout>
