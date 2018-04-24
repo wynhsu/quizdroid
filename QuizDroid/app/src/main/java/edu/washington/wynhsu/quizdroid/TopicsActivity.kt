@@ -20,8 +20,8 @@ class TopicsActivity : AppCompatActivity() {
         val topic = intent.getParcelableExtra<Topic>(EXTRA_MARVEL)
         txtTitle.setText(topic.name)
         txtDescr.setText(topic.descr)
-        val count = topic.questions.size.toString()
-        txtCount.setText("Total Questions: " + count)
+        val count = "Total Questions: " + topic.questions.size.toString()
+        txtCount.setText(count)
 
         btnBegin.setOnClickListener {
             val intent = Intent(this, QuestionsActivity::class.java).apply {
