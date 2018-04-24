@@ -3,10 +3,7 @@ package edu.washington.wynhsu.quizdroid
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import kotlinx.android.synthetic.main.activity_topics.*
-
-const val EXTRA_MARVEL_Q = "edu.washington.wynhsu.quizdroid.MARVEL_Q"
 
 class TopicsActivity : AppCompatActivity() {
 
@@ -17,15 +14,18 @@ class TopicsActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        val topic = intent.getParcelableExtra<Topic>(EXTRA_MARVEL)
-        txtTitle.setText(topic.name)
-        txtDescr.setText(topic.descr)
+        val topic = intent.getParcelableExtra<Topic>("topic")
+        txtTitle.text = topic.name
+        txtDescr.text = topic.descr
         val count = "Total Questions: " + topic.questions.size.toString()
-        txtCount.setText(count)
+        txtCount.text = count
 
         btnBegin.setOnClickListener {
             val intent = Intent(this, QuestionsActivity::class.java).apply {
-                putExtra(EXTRA_MARVEL_Q, "")
+                putExtra("topic", topic)
+                putExtra("question", 0)
+                putExtra("correct", 0)
+                putExtra("incorrect", 0)
             }
             startActivity(intent)
         }

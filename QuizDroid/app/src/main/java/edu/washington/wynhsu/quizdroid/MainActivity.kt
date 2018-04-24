@@ -9,7 +9,9 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
-const val EXTRA_MARVEL = "edu.washington.wynhsu.quizdroid.MARVEL"
+//const val EXTRA_MARVEL = "edu.washington.wynhsu.quizdroid.MARVEL"
+//const val EXTRA_MATH = "edu.washington.wynhsu.quizdroid.MATH"
+//const val EXTRA_PHYSICS = "edu.washington.wynhsu.quizdroid.PHYSICS"
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,11 +27,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        listView.onItemClickListener = object: AdapterView.OnItemClickListener {
-            override fun onItemClick(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
-                val selected = categories.get(position)
-                getView(view, selected)
-            }
+        listView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+            val selected = categories[position]
+            getView(view, selected)
         }
     }
 
@@ -42,11 +42,31 @@ class MainActivity : AppCompatActivity() {
                 "Think you know everything about the Marvel Cinematic Universe? Take this quiz and find out!",
                 arrayOf(mshQ1, mshQ2))
 
-        if (name.equals("Marvel Super Heroes")) {
-            val intent = Intent(this, TopicsActivity::class.java).apply {
-                putExtra(EXTRA_MARVEL, mshT)
+        val mathQ1 = Questions("Question 1: What is the name for the longest side of a right triangle?",
+                arrayOf("Pascale", "Adjacent", "Opposite", "Hypotenuse"), 3)
+        val mathQ2 = Questions("Question 2: How many sides are on a heptagon?",
+                arrayOf("11", "6", "7", "9"), 2)
+        val mathT =Topic("Math",
+                "Self-proclaimed math genius? Find out with this trivia challenge!",
+                arrayOf(mathQ1, mathQ2))
+
+        val physQ1 = Questions("Question 1: What is the term used to denote the tendency of an object to remain" +
+                " in a state of rest until acted upon by an external force?",
+                arrayOf("Acceleration", "Inertia", "Momentum", "Friction"), 1)
+        val physQ2 = Questions("Question 2: What can be expressed as the number of cycles of a vibration occurring" +
+                " per unit of time?",
+                arrayOf("Frequency", "Wave", "Period", "Pitch"), 0)
+        val physT = Topic("Physics",
+                "I know, nobody likes physics..but here's a quiz on it anyway!",
+                arrayOf(physQ1, physQ2))
+
+        val intent = Intent(this, TopicsActivity::class.java).apply {
+            when (name) {
+                "Marvel Super Heroes" -> putExtra("topic", mshT)
+                "Math" -> putExtra("topic", mathT)
+                else -> putExtra("topic", physT)
             }
-            startActivity(intent)
         }
+        startActivity(intent)
     }
 }
