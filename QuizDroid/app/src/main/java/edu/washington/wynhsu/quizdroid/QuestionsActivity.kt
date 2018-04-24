@@ -56,10 +56,10 @@ class QuestionsActivity : AppCompatActivity() {
 
             if (answer.toString() == optArray[topic.questions[qNumb].answer]) {
                 correct++
-                txtCorrect.text = "Correct: " + correct.toString()
+//                txtCorrect.text = "Correct: " + correct.toString()
             } else {
                 incorrect++
-                txtIncorrect.text = "Incorrect: " + incorrect.toString()
+//                txtIncorrect.text = "Incorrect: " + incorrect.toString()
             }
 
             val intent = Intent(this, AnswersActivity::class.java).apply {
