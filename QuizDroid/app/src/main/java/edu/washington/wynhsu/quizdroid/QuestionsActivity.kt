@@ -3,6 +3,7 @@ package edu.washington.wynhsu.quizdroid
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import edu.washington.wynhsu.quizdroid.R.id.*
 import kotlinx.android.synthetic.main.activity_questions.*
 
 class QuestionsActivity : AppCompatActivity() {
@@ -56,10 +57,8 @@ class QuestionsActivity : AppCompatActivity() {
 
             if (answer.toString() == optArray[topic.questions[qNumb].answer]) {
                 correct++
-//                txtCorrect.text = "Correct: " + correct.toString()
             } else {
                 incorrect++
-//                txtIncorrect.text = "Incorrect: " + incorrect.toString()
             }
 
             val intent = Intent(this, AnswersActivity::class.java).apply {
