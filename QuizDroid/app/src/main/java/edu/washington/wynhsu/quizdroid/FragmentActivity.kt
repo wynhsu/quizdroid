@@ -1,11 +1,8 @@
 package edu.washington.wynhsu.quizdroid
 
-import android.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.app.FragmentActivity;
 import android.util.Log
-import kotlinx.android.synthetic.main.activity_topics.*
 
 class FragmentActivity : AppCompatActivity(), TopicsFragment.TopicsListener, QuestionsFragment.QuestionsListener {
 
@@ -15,8 +12,7 @@ class FragmentActivity : AppCompatActivity(), TopicsFragment.TopicsListener, Que
     }
 
     override fun createQuestionsView(t: Topic) {
-//        btnBegin.setOnClickListener {
-//            //send intent from topic activity to question fragment
+            // send intent from topics fragment activity
             val bundle = Bundle()
             bundle.putParcelable("topic", t)
             bundle.putInt("question", 0)
@@ -26,16 +22,25 @@ class FragmentActivity : AppCompatActivity(), TopicsFragment.TopicsListener, Que
             qFragment.arguments = bundle
             val fragTrans = fragmentManager.beginTransaction()
             fragTrans.replace(R.id.fragmentLayout, qFragment).commit()
-//        }
     }
 
     override fun createAnswersView(t: Topic, q: Int, a: CharSequence, correct: Int, incorrect: Int) {
-
+//            val bundle = Bundle()
+//            bundle.putParcelable("topic", t)
+//            bundle.putInt("question", q)
+//            bundle.putCharSequence("answer", a)
+//            bundle.putInt("correct", correct)
+//            bundle.putInt("incorrect", incorrect)
+//            val aFragment = AnswersFragment()
+//            aFragment.arguments = bundle
+//            val fragTrans = fragmentManager.beginTransaction()
+//            fragTrans.replace(R.id.fragmentLayout, aFragment).commit()
     }
 
     override fun onResume() {
         super.onResume()
         val topic = intent.getParcelableExtra<Topic>("topic")
+        Log.i("topic", topic.name)
         val bundle = Bundle()
         bundle.putParcelable("topic", topic)
         val tFragment = TopicsFragment()

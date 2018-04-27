@@ -9,10 +9,6 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
-//const val EXTRA_MARVEL = "edu.washington.wynhsu.quizdroid.MARVEL"
-//const val EXTRA_MATH = "edu.washington.wynhsu.quizdroid.MATH"
-//const val EXTRA_PHYSICS = "edu.washington.wynhsu.quizdroid.PHYSICS"
-
 class MainActivity : AppCompatActivity() {
 
     val categories = arrayOf("Math", "Physics", "Marvel Super Heroes")

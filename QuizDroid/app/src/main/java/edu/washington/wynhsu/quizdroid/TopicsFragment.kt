@@ -2,13 +2,13 @@ package edu.washington.wynhsu.quizdroid
 
 import android.app.Activity
 import android.app.Fragment
-import android.support.v4.app.FragmentActivity;
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.activity_topics.*
+import kotlinx.android.synthetic.main.activity_topics.view.*
 
 class TopicsFragment : Fragment() {
 
@@ -31,13 +31,14 @@ class TopicsFragment : Fragment() {
         val view = inflater.inflate(R.layout.activity_topics, container, false)
 
         val topic = arguments.getParcelable<Topic>("topic")
+        Log.i("fragment topic", topic.name)
 
-        txtTitle.text = topic.name
-        txtDescr.text = topic.descr
+        view.txtTitle.text = topic.name
+        view.txtDescr.text = topic.descr
         val count = "Total Questions: " + topic.questions.size.toString()
-        txtCount.text = count
+        view.txtCount.text = count
 
-        btnBegin.setOnClickListener{
+        view.btnBegin.setOnClickListener{
             activityCommander.createQuestionsView(topic)
         }
 
