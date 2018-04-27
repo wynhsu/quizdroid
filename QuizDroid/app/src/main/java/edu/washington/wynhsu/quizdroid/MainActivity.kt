@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
                 "I know, nobody likes physics..but here's a quiz on it anyway!",
                 arrayOf(physQ1, physQ2))
 
-        val intent = Intent(this, TopicsActivity::class.java).apply {
+        val intent = Intent(this, FragmentActivity::class.java).apply {
             when (name) {
                 "Marvel Super Heroes" -> putExtra("topic", mshT)
                 "Math" -> putExtra("topic", mathT)
