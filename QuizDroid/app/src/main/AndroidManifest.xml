@@ -3,6 +3,7 @@
     package="edu.washington.wynhsu.quizdroid">
 
     <application
+        android:name="QuizApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -16,10 +17,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TopicsActivity" />
-        <activity android:name=".QuestionsActivity" />
-        <activity android:name=".AnswersActivity" />
-        <activity android:name=".FragmentActivity"></activity>
+        <activity android:name=".FragmentActivity" />
     </application>
 
 </manifest>
