@@ -15,7 +15,7 @@ class TopicsFragment : Fragment() {
     lateinit var activityCommander: TopicsListener
 
     interface TopicsListener {
-        fun createQuestionsView(t: Topic)
+        fun beginQuestionsView(t: Topic)
     }
 
     override fun onAttach(context: Context?) {
@@ -35,11 +35,10 @@ class TopicsFragment : Fragment() {
 
         view.txtTitle.text = topic.name
         view.txtDescr.text = topic.descr
-        val count = "Total Questions: " + topic.questions.size.toString()
-        view.txtCount.text = count
+        view.txtCount.text = "Total Questions: " + topic.questions.size.toString()
 
         view.btnBegin.setOnClickListener{
-            activityCommander.createQuestionsView(topic)
+            activityCommander.beginQuestionsView(topic)
         }
 
         return view
