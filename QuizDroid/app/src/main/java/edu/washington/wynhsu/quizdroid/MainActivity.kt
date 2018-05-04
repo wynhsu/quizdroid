@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import edu.washington.wynhsu.quizdroid.R.id.listView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -34,7 +35,7 @@ class MainActivity : AppCompatActivity() {
                 arrayOf("Black Panther", "Wolverine", "Doctor Strange", "Scarlet Witch"), 1)
         val mshQ2 = Questions("Question 2: Which Infinity Stone is mounted on top of The vision's forehead?",
                 arrayOf("Mind Stone", "Power Stone", "Time Stone", "Space Stone"), 0)
-        val mshT = Topic("Marvel Super Heroes",
+        val mshT = Topic("Marvel Super Heroes", "Comic Book Fiction",
                 "Think you know everything about the Marvel Cinematic Universe? Take this quiz and find out!",
                 arrayOf(mshQ1, mshQ2))
 
@@ -42,7 +43,7 @@ class MainActivity : AppCompatActivity() {
                 arrayOf("Pascale", "Adjacent", "Opposite", "Hypotenuse"), 3)
         val mathQ2 = Questions("Question 2: How many sides are on a heptagon?",
                 arrayOf("11", "6", "7", "9"), 2)
-        val mathT =Topic("Math",
+        val mathT =Topic("Math", "Logic & Computation",
                 "Self-proclaimed math genius? Find out with this trivia challenge!",
                 arrayOf(mathQ1, mathQ2))
 
@@ -52,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         val physQ2 = Questions("Question 2: What can be expressed as the number of cycles of a vibration occurring" +
                 " per unit of time?",
                 arrayOf("Frequency", "Wave", "Period", "Pitch"), 0)
-        val physT = Topic("Physics",
+        val physT = Topic("Physics", "Science & Engineering",
                 "I know, nobody likes physics..but here's a quiz on it anyway!",
                 arrayOf(physQ1, physQ2))
 
