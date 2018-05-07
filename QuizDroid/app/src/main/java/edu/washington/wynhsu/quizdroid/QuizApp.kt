@@ -2,7 +2,7 @@ package edu.washington.wynhsu.quizdroid
 
 import android.util.Log
 
-class QuizApp private constructor(): android.app.Application() {
+class QuizApp constructor(): android.app.Application() {
 
     companion object QuizApp: TopicRepository {
         private val INSTANCE = QuizApp
@@ -33,7 +33,7 @@ class QuizApp private constructor(): android.app.Application() {
                 arrayOf("Mind Stone", "Power Stone", "Time Stone", "Space Stone"), 0)
         val mshT = Topic("Marvel Super Heroes", "Avengers Assemble!",
                 "Think you know everything about the Marvel Cinematic Universe? Take this quiz and find out!",
-                arrayOf(mshQ1, mshQ2))
+                "ICON", arrayOf(mshQ1, mshQ2))
         INSTANCE.add(mshT)
 
         val mathQ1 = Questions("Question 1: What is the name for the longest side of a right triangle?",
@@ -42,7 +42,7 @@ class QuizApp private constructor(): android.app.Application() {
                 arrayOf("11", "6", "7", "9"), 2)
         val mathT =Topic("Math", "Logic & Computation",
                 "Self-proclaimed math genius? Find out with this trivia challenge!",
-                arrayOf(mathQ1, mathQ2))
+                "ICON", arrayOf(mathQ1, mathQ2))
         INSTANCE.add(mathT)
 
         val physQ1 = Questions("Question 1: What is the term used to denote the tendency of an object to remain" +
@@ -53,7 +53,7 @@ class QuizApp private constructor(): android.app.Application() {
                 arrayOf("Frequency", "Wave", "Period", "Pitch"), 0)
         val physT = Topic("Physics", "Science & Engineering",
                 "I know, nobody likes physics..but here's a quiz on it anyway!",
-                arrayOf(physQ1, physQ2))
+                "ICON", arrayOf(physQ1, physQ2))
         INSTANCE.add(physT)
     }
 
