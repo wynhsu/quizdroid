@@ -17,20 +17,13 @@ import java.io.File
 class MainActivity : AppCompatActivity() {
 
     private val topicList = QuizApp.getInstance().get()
-    val json = File("./sdcard/questions.json")
-
-    private fun permissions() {
-        val permission = ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)
-        if(permission != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), 1)
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(my_toolbar)
         listView.adapter = CustomAdapter(this, topicList)
+        permissions()
     }
 
     override fun onResume() {
@@ -62,6 +55,13 @@ class MainActivity : AppCompatActivity() {
         }
         else -> {
             super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun permissions() {
+        val permission = ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)
+        if(permission != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), 1)
         }
     }
 

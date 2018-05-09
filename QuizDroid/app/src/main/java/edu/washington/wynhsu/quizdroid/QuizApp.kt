@@ -1,6 +1,12 @@
 package edu.washington.wynhsu.quizdroid
 
+import android.content.pm.PackageManager
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.util.Log
+import com.google.gson.GsonBuilder
+import java.io.File
+
 
 class QuizApp constructor(): android.app.Application() {
 
@@ -59,5 +65,17 @@ class QuizApp constructor(): android.app.Application() {
     override fun onCreate() {
         super.onCreate()
         Log.i("loaded", "QuizApp loaded")
+
+        fetchJSON()
+    }
+
+    fun fetchJSON() {
+        val json = File("./sdcard/questions.json")
+        val gson = GsonBuilder().setPrettyPrinting().create()
+        val topics = gson.fromJson(json.reader(), TopicII::class.java)
     }
 }
+
+class TopicII(val name: String,
+            val descr: String,
+            val questions: Array<Questions>)
