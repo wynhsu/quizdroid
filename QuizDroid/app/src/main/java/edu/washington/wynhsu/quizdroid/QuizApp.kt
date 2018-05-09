@@ -25,7 +25,6 @@ class QuizApp constructor(): android.app.Application() {
         }
     }
 
-//    private QuizApp(){}
     init {
         val mshQ1 = Questions("Question 1: Which character isn't part of The Avengers in the MCU?",
                 arrayOf("Black Panther", "Wolverine", "Doctor Strange", "Scarlet Witch"), 1)
