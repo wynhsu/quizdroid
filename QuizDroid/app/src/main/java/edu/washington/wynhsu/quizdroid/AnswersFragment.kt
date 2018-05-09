@@ -35,8 +35,8 @@ class AnswersFragment : Fragment () {
         var correct = arguments.getInt("correct")
         var incorrect = arguments.getInt("incorrect")
 
-        view.txtsubTitle2.text = topic.name
-        view.txtCA.text = "Correct Answer: " + topic.questions[qNumb].options[topic.questions[qNumb].answer]
+        view.txtsubTitle2.text = topic.title
+        view.txtCA.text = "Correct Answer: " + topic.questions[qNumb].answers[topic.questions[qNumb].answer]
         view.txtUA.text = "Your Answer: $answer"
         val count = topic.questions.size
         view.txtScore.text = "You have $correct out of $count correct."

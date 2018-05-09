@@ -37,11 +37,11 @@ class QuestionsFragment : Fragment() {
 
         view.txtCorrect.text = "Correct: " + correct.toString()
         view.txtIncorrect.text = "Incorrect: " + incorrect.toString()
-        view.txtsubTitle.text = topic.name
-        view.txtQuestion.text = topic.questions[qNumb].question
+        view.txtsubTitle.text = topic.title
+        view.txtQuestion.text = topic.questions[qNumb].text
         view.btnSubmit.isEnabled = view.rdGrp.checkedRadioButtonId != -1
 
-        val optArray = topic.questions[qNumb].options
+        val optArray = topic.questions[qNumb].answers
         view.rdBtn1.text = optArray[0]
         view.rdBtn2.text = optArray[1]
         view.rdBtn3.text = optArray[2]

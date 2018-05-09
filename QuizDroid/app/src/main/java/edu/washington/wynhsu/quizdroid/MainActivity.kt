@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(my_toolbar)
         listView.adapter = CustomAdapter(this, topicList)
-        permissions()
     }
 
     override fun onResume() {
@@ -58,13 +57,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun permissions() {
-        val permission = ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)
-        if(permission != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), 1)
-        }
-    }
-
     private class CustomAdapter(context: Context, topic: MutableList<Topic>): BaseAdapter() {
 
         private val mContext: Context = context
@@ -91,7 +83,7 @@ class MainActivity : AppCompatActivity() {
             //icon.setImageResource()
 
             val catName = listItem.findViewById<TextView>(R.id.text1)
-            catName.text = mTopic[position].name
+            catName.text = mTopic[position].title
 
             val subName = listItem.findViewById<TextView>(R.id.text2)
             subName.text = mTopic[position].sub

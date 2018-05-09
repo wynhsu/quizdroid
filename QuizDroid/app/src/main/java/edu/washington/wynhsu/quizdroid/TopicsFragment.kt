@@ -31,10 +31,10 @@ class TopicsFragment : Fragment() {
         val view = inflater.inflate(R.layout.activity_topics, container, false)
 
         val topic = arguments.getParcelable<Topic>("topic")
-        Log.i("fragment topic", topic.name)
+        Log.i("fragment topic", topic.title)
 
-        view.txtTitle.text = topic.name
-        view.txtDescr.text = topic.descr
+        view.txtTitle.text = topic.title
+        view.txtDescr.text = topic.desc
         view.txtCount.text = "Total Questions: " + topic.questions.size.toString()
 
         view.btnBegin.setOnClickListener{
