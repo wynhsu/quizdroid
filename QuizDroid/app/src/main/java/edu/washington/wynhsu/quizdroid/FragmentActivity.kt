@@ -51,7 +51,7 @@ class FragmentActivity : AppCompatActivity(), TopicsFragment.TopicsListener, Que
     override fun onResume() {
         super.onResume()
         val topic = intent.getParcelableExtra<Topic>("topic")
-        Log.i("topic", topic.name)
+        Log.i("topic", topic.title)
         val bundle = Bundle()
         bundle.putParcelable("topic", topic)
         val tFragment = TopicsFragment()

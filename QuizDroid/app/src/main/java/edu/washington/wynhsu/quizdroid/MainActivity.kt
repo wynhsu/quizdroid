@@ -10,18 +10,24 @@ import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.view.*
 import android.widget.*
+import com.google.gson.GsonBuilder
 import edu.washington.wynhsu.quizdroid.R.id.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 
 class MainActivity : AppCompatActivity() {
 
-    private val topicList = QuizApp.getInstance().get()
+//    private val topicList = QuizApp.getInstance().get()
+    private lateinit var topicList: Array<Topic>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(my_toolbar)
+
+        permissions()
+        topicList = fetchJSON()
+
         listView.adapter = CustomAdapter(this, topicList)
     }
 
@@ -29,16 +35,11 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         listView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
             val selected = topicList[position]
-            getView(view, selected)
+            val intent = Intent(this, FragmentActivity::class.java).apply {
+                putExtra("topic", selected)
+            }
+            startActivity(intent)
         }
-    }
-
-    private fun getView(view: View, t: Topic) {
-
-        val intent = Intent(this, FragmentActivity::class.java).apply {
-            putExtra("topic", t)
-        }
-        startActivity(intent)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -57,10 +58,23 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private class CustomAdapter(context: Context, topic: MutableList<Topic>): BaseAdapter() {
+    private fun permissions() {
+        val permission = ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)
+        if(permission != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), 0)
+        }
+    }
+
+    private fun fetchJSON(): Array<Topic> {
+        val json = File("./sdcard/questions.json")
+        val gson = GsonBuilder().setPrettyPrinting().create()
+        return gson.fromJson(json.reader(), Array<Topic>::class.java)
+    }
+
+    private class CustomAdapter(context: Context, topic: Array<Topic>): BaseAdapter() {
 
         private val mContext: Context = context
-        private val mTopic: MutableList<Topic> = topic
+        private val mTopic: Array<Topic> = topic
 
         override fun getCount(): Int {
             return mTopic.size
@@ -86,7 +100,7 @@ class MainActivity : AppCompatActivity() {
             catName.text = mTopic[position].title
 
             val subName = listItem.findViewById<TextView>(R.id.text2)
-            subName.text = mTopic[position].sub
+            subName.text = mTopic[position].desc
 
             return listItem
         }
