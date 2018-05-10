@@ -61,7 +61,7 @@ class QuestionsFragment : Fragment() {
                 view.rdBtn3.isChecked -> view.rdBtn3.text
                 else -> view.rdBtn4.text
             }
-            if (answer.toString() == optArray[topic.questions[qNumb].answer]) {
+            if (answer.toString() == optArray[topic.questions[qNumb].answer-1]) {
                 correct++
             } else {
                 incorrect++

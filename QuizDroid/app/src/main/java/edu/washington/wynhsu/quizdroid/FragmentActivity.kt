@@ -3,12 +3,16 @@ package edu.washington.wynhsu.quizdroid
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.prefs.*
 
 class FragmentActivity : AppCompatActivity(), TopicsFragment.TopicsListener, QuestionsFragment.QuestionsListener, AnswersFragment.AnswersListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fragment)
+        setSupportActionBar(my_toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun beginQuestionsView(t: Topic) {
