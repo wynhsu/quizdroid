@@ -7,7 +7,7 @@ import kotlinx.android.parcel.Parcelize
 data class Topic(val title: String,
                  val desc: String,
                  val questions: Array<Questions>): Parcelable {
-    override fun toString(): String {
-        return title
-    }
+//    override fun toString(): String {
+//        return title
+//    }
 }

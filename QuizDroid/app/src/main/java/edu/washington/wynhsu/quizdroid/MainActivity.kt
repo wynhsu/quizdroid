@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.util.Log
@@ -13,7 +14,9 @@ import android.widget.*
 import com.google.gson.GsonBuilder
 import edu.washington.wynhsu.quizdroid.R.id.*
 import kotlinx.android.synthetic.main.activity_main.*
+import okhttp3.*
 import java.io.File
+import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,7 +29,10 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(my_toolbar)
 
         permissions()
-        topicList = fetchJSON()
+        fetchJSON(this)
+        if (!::topicList.isInitialized) {
+            topicList = fetchLocal()
+        }
 
         listView.adapter = CustomAdapter(this, topicList)
     }
@@ -65,7 +71,35 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun fetchJSON(): Array<Topic> {
+    private fun fetchJSON(context: Context){
+        val url = "http://tednewardsandbox.site44.com/questions.json" //txtURL.toString()
+        val request = Request.Builder().url(url).build()
+        val client = OkHttpClient()
+        client.newCall(request).enqueue(object: Callback {
+            override fun onResponse(call: Call?, response: Response?){
+                val body = response?.body()?.string()?.reader()
+                val gson = GsonBuilder().setPrettyPrinting().create()
+                val json = gson.fromJson(body, Array<Topic>::class.java).toString().toByteArray()
+                if (isExternalStorageWritable()) {
+                    val sdcard = Environment.getExternalStorageDirectory()
+                    val file = File(sdcard, "questions.json")
+                    file.writeBytes(json)
+                }
+//                runOnUiThread {
+//                    listView.adapter = CustomAdapter(context, json)
+//                }
+            }
+            override fun onFailure(call: Call?, e: IOException?) {
+                Log.i("error", "no network connection")
+            }
+        })
+    }
+
+    fun isExternalStorageWritable(): Boolean {
+        return Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED
+    }
+
+    private fun fetchLocal(): Array<Topic> {
         val json = File("./sdcard/questions.json")
         val gson = GsonBuilder().setPrettyPrinting().create()
         return gson.fromJson(json.reader(), Array<Topic>::class.java)
