@@ -40,13 +40,13 @@ class Prefs : AppCompatActivity(){
                         SystemClock.elapsedRealtime() + (frequency.toInt() * 1000).toLong(),
                         (frequency.toInt() * 1000).toLong(), pendingIntent)
             }
-            val switch = Intent(this, MainActivity::class.java)
-            startActivity(switch)
+//            val switch = Intent(this, MainActivity::class.java)
+//            startActivity(switch)
         }
     }
 
-//    override fun onDestroy() {
-//        super.onDestroy()
-//        unregisterReceiver(AlarmReceiver())
-//    }
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(AlarmReceiver())
+    }
 }

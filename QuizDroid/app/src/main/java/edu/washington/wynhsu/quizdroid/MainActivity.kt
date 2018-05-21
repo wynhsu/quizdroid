@@ -16,6 +16,7 @@ import android.os.SystemClock
 import android.provider.Settings
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
+import android.support.v4.content.ContextCompat.startActivity
 import android.util.Log
 import android.view.*
 import android.widget.*
@@ -54,10 +55,6 @@ class MainActivity : AppCompatActivity() {
         getPermissions()
         topicList = fetchLocal()
         listView.adapter = CustomAdapter(this, topicList)
-//        if (!::topicList.isInitialized) {
-//            topicList = fetchLocal()
-//            listView.adapter = CustomAdapter(this, topicList)
-//        }
     }
 
     override fun onResume() {
@@ -156,14 +153,6 @@ fun fetchJSON() {
                         }
                     }
                 }
-//                    Log.i("path", dir.toString())
-//                    val file = File(dir, "questions.json")
-//                    if (!file.exists()) { file.mkdir() }
-//                    try {
-//                        PrintWriter(file).use { out -> out.println(json) }
-//                    } catch (e: Exception) {
-//                        Log.e("error", "didn't print")
-//                    }
             }
         }
 
@@ -210,9 +199,9 @@ private class CustomAdapter(context: Context, topic: Array<Topic>): BaseAdapter(
         val layoutInflater = LayoutInflater.from(mContext)
         val listItem = layoutInflater.inflate(R.layout.list_item, parent, false)
 
-        val icon = listItem.findViewById<ImageView>(R.id.imgIcon)
+        // val icon = listItem.findViewById<ImageView>(R.id.imgIcon)
         // implement when there is an actual icon
-        //icon.setImageResource()
+        // icon.setImageResource()
 
         val catName = listItem.findViewById<TextView>(R.id.text1)
         catName.text = mTopic[position].title
